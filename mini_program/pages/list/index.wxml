@@ -1,0 +1,73 @@
+<!--pages/category/index.wxml-->
+<view class='page'>
+  <view class="page__hd">
+    <view class="page__title">{{name}}</view>
+    <view class="page__desc">{{creatarea}} - {{creattime}}</view>
+    <view class="page__desc">{{remark}}</view>
+  </view>
+
+  <view class="weui-gallery {{istrue ? 'weui-gallery_show' : ''}}" bindtap="closeGallery">
+    <view class="weui-gallery__info">
+      <!-- <text>{{this_msg}}</text> -->
+    </view>
+    <view class="weui-gallery__img__wrp">
+      <image mode="aspectFit" class="weui-gallery__img" src="{{this_pic}}"></image>
+    </view>
+    <view class="weui-gallery__opr">
+      <navigator class="weui-gallery__del" bindtap="delePic" data-imgpid="{{this_pid}}">删除照片</navigator>
+      <!-- <navigator href="javascript:" class="weui-gallery__del">返回列表</navigator> -->
+    </view>
+  </view>
+
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex" wx:for="{{pic}}" wx:key="idx" wx:for-item="item">
+      <view>
+        <image src="{{item.url}}" data-imgsrc="{{item.url_large}}" data-imgpid="{{item.pid}}" data-imgmsg="{{item.tags}}" bindtap="openGallery" mode='aspectFit' lazy-load='true' />
+        <view class="weui-footer">
+          <!-- <text>{{item.tags}} </text> -->
+        </view>
+        <text>\n</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="weui-tabbar">
+    <view class="weui-tabbar__item">
+      <navigator bindtap='toIndex'>
+        <view style="position: relative;display:inline-block;">
+          <image src="http://demo.sc.chinaz.com/Files/pic/icons/5823/269.png" class="weui-tabbar__icon"></image>
+        </view>
+        <view class="weui-tabbar__label">相册列表</view>
+      </navigator>
+    </view>
+    <view class="weui-tabbar__item">
+      <navigator bindtap='toSearch'>
+        <view style="position: relative;display:inline-block;">
+          <image src="http://demo.sc.chinaz.com/Files/pic/icons/5823/260.png" class="weui-tabbar__icon"></image>
+        </view>
+        <view class="weui-tabbar__label">图片搜索</view>
+      </navigator>
+    </view>
+    <view class="weui-tabbar__item">
+      <navigator bindtap='toUpload'>
+        <view style="position: relative;display:inline-block;">
+          <image src="http://demo.sc.chinaz.com/Files/pic/icons/5823/263.png" class="weui-tabbar__icon"></image>
+        </view>
+        <view class="weui-tabbar__label">我要上传</view>
+      </navigator>
+    </view>
+    <view class="weui-tabbar__item">
+      <navigator bindtap='toManage'>
+        <view style="position: relative;display:inline-block;">
+          <image src="http://demo.sc.chinaz.com/Files/pic/icons/5823/265.png" class="weui-tabbar__icon"></image>
+        </view>
+        <view class="weui-tabbar__label">相册管理</view>
+      </navigator>
+    </view>
+  </view>
+  <text>\n\n</text>
+  <view class="weui-footer">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>

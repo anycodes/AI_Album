@@ -1,0 +1,16 @@
+/* pages/category/index.wxss */
+
+.weui-tabbar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.placeholder{
+    margin: 5px;
+    padding: 0 10px;
+    text-align: center;
+    background-color: #F7F7F7;
+    color: rgba(0,0,0,.3);
+}

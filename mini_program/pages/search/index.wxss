@@ -1,0 +1,33 @@
+/* pages/search/index.wxss */
+
+.weui-tabbar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result .weui-cell__bd{
+  padding: 2px 0 2px 20px;
+  color: #666;
+}
+.searchbar-result:before{
+    display: none;
+}
+
+.placeholder{
+    /* word-wrap: break-word; */
+    /* word-break: break-all; */
+    /* white-space: pre-line; */
+    margin: 5px;
+    padding: 0 10px;
+    text-align: center;
+    background-color: #F7F7F7;
+    height: 2.3em;
+    line-height: 2.3em;
+    color: rgba(0,0,0,.3);
+}
