@@ -39,7 +39,7 @@ Page({
           "wechat": app.globalData.openID,
         },
         header: {
-          "Content-Type": "application/x-www-form-json"
+          "Content-Type": "application/json"
         },
         method: "POST",
         success: function(res) {
@@ -84,7 +84,7 @@ Page({
         "cid": res.target.dataset.cid
       },
       header: {
-        "Content-Type": "application/x-www-form-json"
+        "Content-Type": "application/json"
       },
       method: "POST",
       success: function(res) {

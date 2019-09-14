@@ -74,7 +74,7 @@ Page({
         "pid": res.target.dataset.imgpid
       },
       header: {
-        "Content-Type": "application/x-www-form-json"
+        "Content-Type": "application/json"
       },
       method: "POST",
       success: function(res) {
@@ -141,7 +141,7 @@ Page({
           "cid": that.data.cid
         },
         header: {
-          "Content-Type": "application/x-www-form-json"
+          "Content-Type": "application/json"
         },
         method: "POST",
         success: function(res) {
@@ -211,7 +211,7 @@ Page({
           "tags": that.data.tags
         },
         header: {
-          "Content-Type": "application/x-www-form-json"
+          "Content-Type": "application/json"
         },
         method: "POST",
         success: function(res) {
@@ -280,7 +280,7 @@ Page({
           "search": that.data.search
         },
         header: {
-          "Content-Type": "application/x-www-form-json"
+          "Content-Type": "application/json"
         },
         method: "POST",
         success: function(res) {

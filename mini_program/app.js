@@ -16,7 +16,7 @@ App({
               code: res.code,
             },
             header: {
-              "Content-Type": "application/x-www-form-json"
+              "Content-Type": "application/json"
             },
             method: 'POST',
             success: function(res) {

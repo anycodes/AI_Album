@@ -52,7 +52,7 @@ Page({
             "cid": this.data.cid
           },
           header: {
-            "Content-Type": "application/x-www-form-json"
+            "Content-Type": "application/json"
           },
           method: "POST",
           success: function(res) {
@@ -119,7 +119,7 @@ Page({
       url: url,
       data: data,
       header: {
-        "Content-Type": "application/x-www-form-json"
+        "Content-Type": "application/json"
       },
       method: "POST",
       success: function(res) {
