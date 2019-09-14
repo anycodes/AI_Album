@@ -156,3 +156,7 @@ def main_handler(event, context):
                 print(e.get_resource_location())
         except Exception as e:
             print(e)
+    try:
+        connection.close()
+    except:
+        pass

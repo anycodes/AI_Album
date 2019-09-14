@@ -173,3 +173,8 @@ def main_handler(event, context):
     print("开始预测")
 
     print(ana_picture(download_path))
+
+    try:
+        connection.close()
+    except:
+        pass

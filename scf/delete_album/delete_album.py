@@ -135,6 +135,7 @@ def main_handler(event, context):
         connection.close()
     except:
         pass
+
     return {
         "result": result,
         "msg": msg

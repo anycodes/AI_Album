@@ -67,6 +67,11 @@ def main_handler(event, context):
     else:
         result = True
 
+    try:
+        connection.close()
+    except:
+        pass
+
     return {
         "result": result
     }

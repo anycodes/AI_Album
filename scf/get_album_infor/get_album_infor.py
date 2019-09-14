@@ -80,4 +80,10 @@ def main_handler(event, context):
     except Exception as e:
         print(e)
         result = []
+
+    try:
+        connection.close()
+    except:
+        pass
+
     return result

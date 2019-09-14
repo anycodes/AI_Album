@@ -128,6 +128,12 @@ def main_handler(event, context):
         print(e)
         result = False
         msg = "操作异常，请联系管理员处理"
+
+    try:
+        connection.close()
+    except:
+        pass
+
     return {
         "result": result,
         "msg": msg,
