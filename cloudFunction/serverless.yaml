@@ -29,7 +29,7 @@ CosBucket:
 
 # 各个函数的单独配置
 Album_Login:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Login
     description: 登录函数
@@ -53,7 +53,7 @@ Album_Login:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Add_Album:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Add_Album
     description: 增加相册函数
@@ -77,7 +77,7 @@ Album_Add_Album:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Delete_Album:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Delete_Album
     description: 删除相册功能
@@ -101,7 +101,7 @@ Album_Delete_Album:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Delete_Photo:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Delete_Photo
     description: 删除图片
@@ -125,7 +125,7 @@ Album_Delete_Photo:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Get_Album:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Get_Album
     description: 获取相册
@@ -149,7 +149,7 @@ Album_Get_Album:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Get_Album_Info:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Get_Album_Info
     description: 获取单个相册详细信息
@@ -173,7 +173,7 @@ Album_Get_Album_Info:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Get_Open_Id:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Get_Open_Id
     description: 获取openId
@@ -189,7 +189,7 @@ Album_Get_Open_Id:
         mini_program_app_secret: ${Conf.mini_program_app_secret}
 
 Album_Change_Album:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Change_Album
     description: 修改相册信息
@@ -213,7 +213,7 @@ Album_Change_Album:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Get_Photo:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Get_Photo
     description: 获取图片
@@ -237,7 +237,7 @@ Album_Get_Photo:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Get_Photo_Tags:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Get_Photo_Tags
     description: 获取图片标签
@@ -261,7 +261,7 @@ Album_Get_Photo_Tags:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Tags_List:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Tags_List
     description: 获取标签列表
@@ -285,7 +285,7 @@ Album_Tags_List:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Upload:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Upload
     description: 图片上传
@@ -309,7 +309,7 @@ Album_Upload:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Compression:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Compression
     description: 图像压缩（异步，cos触发器）
@@ -343,7 +343,7 @@ Album_Compression:
             enable: true
 
 Album_Get_Photo_Search:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Get_Photo_Search
     description: 图像检索
@@ -368,7 +368,7 @@ Album_Get_Photo_Search:
         tencent_appid: ${Conf.tencent_appid}
 
 Album_Prediction:
-  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  component: "@serverless/tencent-scf"
   inputs:
     name: Album_Prediction
     description: 图像Caption

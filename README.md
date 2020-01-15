@@ -523,6 +523,7 @@ def setEnv():
   <div align=center><img src="https://github.com/anycodes/album/blob/master/image/06.gif?raw=true"/></div>
  
 
+## 项目开发
 ### 数据库建立
 
  <div align=center><img src="https://github.com/anycodes/album/blob/master/image/mysql.png?raw=true"/></div>
@@ -551,9 +552,7 @@ ALTER TABLE `tags` ADD unique(`name`);
 
 ```
 
-
-
-## 使用方法
+### 让Code飞起来
 
 * 在使用之前您需要有一个腾讯云的账号，并且开通了COS、COS、APIGW以及CDB等相关产品权限；
 * 将项目clone到本地，配置自己的密钥信息、数据库信息。配置文件在`cloudFunction`目录下的`serverless.yaml`中：
