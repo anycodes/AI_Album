@@ -11,40 +11,40 @@
 
 ## 基础设计
 
-![avatar](https://github.com/anycodes/album/blob/master/image/01.png?raw=true)
+<div align=center><img src="https://github.com/anycodes/album/blob/master/image/01.png?raw=true"/></div>
 
 该项目设计主要拥有登录功能、相册新建、图片上传以及相关预览功能，以及搜索功能，整体如图所示。
 
-![avatar](https://github.com/anycodes/album/blob/master/image/61.png?raw=true)
+<div align=center><img src="https://github.com/anycodes/album/blob/master/image/61.png?raw=true"/></div>
 
 其中注册功能的主要作用是，通过获取用户的唯一Id（微信中的OpenId），来讲用户信息存储到数据库中，之后的所有操作，都需要根据该Id作为区分。相册功能主要包括相册添加、修改、删除以及查看等功能。图片功能包括图片上传功能、删除功能、查看功能。搜索功能主要是可以查看指定标签对应的图片列表，以及指定搜索内容对应的列表。当然这四个主要功能和模块是和前端关系紧密的部分，除此之外还有后端异步操作的两个模块，分别是图像压缩功能以及图像描述功能。
 #### 注册功能：
 注册功能主要是用户点击注册账号之后，执行的动作。该动作需要注意，用户点击注册账号注册的时候要先判断用户是否已经注册过，如果已经注册过则默认登陆，否则进行注册并登陆。当用户不想注册时，可以点击体验程序，可以对程序大部分页面进行预览。但是不能实现有关数据库的增删改查等功能。登录功能页面如图所示。
 
- ![avatar](https://github.com/anycodes/album/blob/master/image/62.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/62.png?raw=true"/></div>
 
 #### 相册功能：
 当用户注册登录之后，可以在相册管理页面进行相册相关的管理，包括编辑功能，删除功能以及新建功能，此处在进行添加和修改的时候，需要注意相册名称是否已经存在；在进行删除相册，修改相册等操作时要判断用户是否有操作该相册的权限等，如图所示，是相册功能相关原型图。
 
-![avatar](https://github.com/anycodes/album/blob/master/image/63.png?raw=true)
+<div align=center><img src="https://github.com/anycodes/album/blob/master/image/63.png?raw=true"/></div>
 
 #### 图片功能：
 图片功能主要包括图片列表以及图片获取、图片删除以及图片上传功能，在图片获取与删除的过程中，要对用户是否有该项操作的权限进行判断，图片上传时也要判断用户是否有上传到指定相册的权限。图片功能相关原型图如所示。
 
-![avatar](https://github.com/anycodes/album/blob/master/image/64.png?raw=true)     
+<div align=center><img src="https://github.com/anycodes/album/blob/master/image/64.png?raw=true"/></div>  
 
 图片功能部分除了用户侧可见的功能，还有定时任务，当用户上传图片之后，系统会在后台异步进行图像压缩以及图像的描述，关键词提取等。整体流程如图所示。
 
- ![avatar](https://github.com/anycodes/album/blob/master/image/65.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/65.png?raw=true"/></div>
 
 #### 搜索功能：
 搜索功能指的是通过关键词或者使用者的描述，可以获得到目标数据的过程，这一功能原型图如图所示。
 
- ![avatar](https://github.com/anycodes/album/blob/master/image/66.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/66.png?raw=true"/></div>
 
 这一部分的难点和重点在于通过用户的描述，搜索到目标数据的过程。这个过程的基本流程如图所示。
 
- ![avatar](https://github.com/anycodes/album/blob/master/image/67.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/67.png?raw=true"/></div>
 
 
 ## 开发总结
@@ -106,7 +106,7 @@ Album_Login:
 
 针对问题1，我们来做一个实验，我去腾讯云云函数创建一个test：
 
-![avatar](https://github.com/anycodes/album/blob/master/image/02.png?raw=true)
+<div align=center><img src="https://github.com/anycodes/album/blob/master/image/02.png?raw=true"/></div>
 
 创建之后，我们疯狂点击测试按钮，多次记录运行日志：
 
@@ -504,29 +504,28 @@ def setEnv():
 
 那么我们的Yaml怎么写？
 
- ![avatar](https://github.com/anycodes/album/blob/master/image/03.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/03.png?raw=true"/></div>
  
  是的，这样我们就可以很简单轻松加愉快的将我们的公共组件库，在部署函数的时候，引入到项目中。
  
  本地长这样：
  
- ![avatar](https://github.com/anycodes/album/blob/master/image/04.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/04.png?raw=true"/></div>
  
  线上长这样：
  
- ![avatar](https://github.com/anycodes/album/blob/master/image/05.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/05.png?raw=true"/></div>
  
  对于这个项目，完美解决本地调试，线上运行的全兼容问题。
  
  通过上面简单的实验和分析，我们知道了如何制作公共组件库，如何定义Components的全局变量，如何本地调试和线上触发二者兼得，以及在什么地方初始化数据库"性价比较高"，完成了上面的所有部分，就是我们进行各个子功能函数编写的工作了，基本都是数据库的增删改查。此处不再一一描述。编写完函数之后，可以编写我们的小程序端，都弄好了，整体形势这样：
  
- 
-  ![avatar](https://github.com/anycodes/album/blob/master/image/06.gif?raw=true)
+  <div align=center><img src="https://github.com/anycodes/album/blob/master/image/06.gif?raw=true"/></div>
  
 
 ### 数据库建立
 
- ![avatar](https://github.com/anycodes/album/blob/master/image/mysql.png?raw=true)
+ <div align=center><img src="https://github.com/anycodes/album/blob/master/image/mysql.png?raw=true"/></div>
 
 数据库部分主要对相关的表和表之间的关系进行建立。
 首先需要创建项目所必须的表：
