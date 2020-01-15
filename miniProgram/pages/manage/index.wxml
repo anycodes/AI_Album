@@ -1,0 +1,41 @@
+<!--pages/manage/index.wxml-->
+<import src="../../template.wxml" />
+<view class='page'>
+  <view class="page__hd">
+    <view class="page__title">相册管理</view>
+    <view class="page__desc">管理您的相册</view>
+  </view>
+
+  <view class="page__bd">
+    <navigator url="{{button_url}}">
+      <button class="weui-btn mini-btn" type="primary" size="large">{{button_lable}}</button>
+    </navigator>
+    <text>\n</text>
+    <view class="weui-form-preview" wx:for="{{album_list}}" wx:key="idx" wx:for-item="item">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__label">相册名称</view>
+        <view class="weui-form-preview__value_in-hd">{{item.name}}</view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">创建地点</view>
+          <view class="weui-form-preview__value">{{item.creatarea}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">创建时间</view>
+          <view class="weui-form-preview__value">{{item.creattime}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">相册备注</view>
+          <view class="weui-form-preview__value">{{item.remark}}</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator url='/pages/set_album/index?change=true&cid={{item.cid}}' class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">编辑</navigator>
+        <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap='deleteAlbum' data-cid="{{item.cid}}">删除</navigator>
+      </view>
+    </view>
+  </view>
+  <text>\n\n\n</text>
+  <template is="footer" />
+</view>

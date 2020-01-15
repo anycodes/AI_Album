@@ -1,0 +1,28 @@
+<template name="footer">
+	<view class="weui-tabbar">
+		<view class="weui-tabbar__item" bindtap='toIndex'>
+			<view style="position: relative;display:inline-block;">
+				<image src="/images/tabbar/1.png" class="weui-tabbar__icon"></image>
+			</view>
+			<view class="weui-tabbar__label">相册列表</view>
+		</view>
+		<view class="weui-tabbar__item" bindtap='toSearch'>
+			<view style="position: relative;display:inline-block;">
+				<image src="/images/tabbar/2.png" class="weui-tabbar__icon"></image>
+			</view>
+			<view class="weui-tabbar__label">图片搜索</view>
+		</view>
+		<view class="weui-tabbar__item" bindtap='toUpload'>
+			<view style="position: relative;display:inline-block;">
+				<image src="/images/tabbar/3.png" class="weui-tabbar__icon"></image>
+			</view>
+			<view class="weui-tabbar__label">我要上传</view>
+		</view>
+		<view class="weui-tabbar__item" bindtap='toManage'>
+			<view style="position: relative;display:inline-block;">
+				<image src="/images/tabbar/4.png" class="weui-tabbar__icon"></image>
+			</view>
+			<view class="weui-tabbar__label">相册管理</view>
+		</view>
+	</view>
+</template>

@@ -1,0 +1,35 @@
+<!--pages/category/index.wxml-->
+<import src="../../template.wxml" />
+<view class='page'>
+  <view class="page__hd">
+    <view class="page__title">{{name}}</view>
+    <view class="page__desc">{{creatarea}} - {{creattime}}</view>
+    <view class="page__desc">{{remark}}</view>
+  </view>
+
+  <view class="weui-gallery {{istrue ? 'weui-gallery_show' : ''}}" bindtap="closeGallery">
+    <view class="weui-gallery__info">
+      <!-- <text>{{this_msg}}</text> -->
+    </view>
+    <view class="weui-gallery__img__wrp">
+      <image mode="aspectFit" class="weui-gallery__img" src="{{this_pic}}"></image>
+    </view>
+    <view class="weui-gallery__opr">
+      <navigator class="weui-gallery__del" bindtap="delePic" data-imgpid="{{this_pid}}">删除照片</navigator>
+      <!-- <navigator href="javascript:" class="weui-gallery__del">返回列表</navigator> -->
+    </view>
+  </view>
+
+  <view class="page__bd page__bd_spacing">
+    <view class="weui-flex" wx:for="{{pic}}" wx:key="idx" wx:for-item="item">
+      <view class="items">
+        <image src="{{item.url}}" data-imgsrc="{{item.url_large}}" data-imgpid="{{item.pid}}" data-imgmsg="{{item.tags}}" bindtap="openGallery" mode='aspectFit' lazy-load='true' />
+        <view class="weui-footer">
+          <!-- <text>{{item.tags}} </text> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <text>\n\n\n</text>
+  <template is="footer" />
+</view>

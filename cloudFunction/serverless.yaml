@@ -1,0 +1,464 @@
+# 函数们的整体配置信息
+Conf:
+  component: "serverless-global"
+  inputs:
+    region: ap-shanghai
+    runtime: Python3.6
+    handler: index.main_handler
+    include_common: ./common
+    mysql_host: gz-c************************.com
+    mysql_user: root
+    mysql_password: S************************!
+    mysql_port: 6************************0
+    mysql_db: album
+    mini_program_app_id: asdsa************************dddd
+    mini_program_app_secret: fd340c4************************8744ee
+    tencent_secret_id: AKID1y************************l1q0kK
+    tencent_secret_key: cCoJ************************FZj5Oa
+    tencent_appid: 1256773370
+    cos_bucket: 'album-1256773370'
+
+# 创建存储桶
+CosBucket:
+  component: '@serverless/tencent-website'
+  inputs:
+    code:
+      src: ./cos
+    region:  ${Conf.region}
+    bucketName: ${Conf.cos_bucket}
+
+# 各个函数的单独配置
+Album_Login:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Login
+    description: 登录函数
+    codeUri: ./album/login
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Add_Album:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Add_Album
+    description: 增加相册函数
+    codeUri: ./album/addAlbum
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Delete_Album:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Delete_Album
+    description: 删除相册功能
+    codeUri: ./album/deleteAlbum
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Delete_Photo:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Delete_Photo
+    description: 删除图片
+    codeUri: ./album/deletePhoto
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Get_Album:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Get_Album
+    description: 获取相册
+    codeUri: ./album/getAlbum
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Get_Album_Info:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Get_Album_Info
+    description: 获取单个相册详细信息
+    codeUri: ./album/getAlbumInfo
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Get_Open_Id:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Get_Open_Id
+    description: 获取openId
+    codeUri: ./album/getOpenId
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mini_program_app_id: ${Conf.mini_program_app_id}
+        mini_program_app_secret: ${Conf.mini_program_app_secret}
+
+Album_Change_Album:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Change_Album
+    description: 修改相册信息
+    codeUri: ./album/changeAlbum
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Get_Photo:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Get_Photo
+    description: 获取图片
+    codeUri: ./album/getPhoto
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Get_Photo_Tags:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Get_Photo_Tags
+    description: 获取图片标签
+    codeUri: ./album/getPhotoTags
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Tags_List:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Tags_List
+    description: 获取标签列表
+    codeUri: ./album/tagsList
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Upload:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Upload
+    description: 图片上传
+    codeUri: ./album/upload
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Compression:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Compression
+    description: 图像压缩（异步，cos触发器）
+    codeUri: ./album/compression
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+    events:
+      - cos:
+          name: ${Conf.cos_bucket}.cos.${Conf.region}.myqcloud.com
+          parameters:
+            bucket: ${Conf.cos_bucket}.cos.${Conf.region}.myqcloud.com
+            filter:
+              prefix: large/
+              suffix:
+            events: cos:ObjectCreated:*
+            enable: true
+
+Album_Get_Photo_Search:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Get_Photo_Search
+    description: 图像检索
+    codeUri: ./album/getPhotoSearch
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    memorySize: 512
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+
+Album_Prediction:
+  component: "/Users/dfounderliu/Desktop/component/stable/tencent-scf"
+  inputs:
+    name: Album_Prediction
+    description: 图像Caption
+    codeUri: ./album/prediction
+    handler: ${Conf.handler}
+    runtime: ${Conf.runtime}
+    memorySize: 1536
+    timeout: 800
+    region:  ${Conf.region}
+    include:
+      - ${Conf.include_common}
+    environment:
+      variables:
+        mysql_host: ${Conf.mysql_host}
+        mysql_port: ${Conf.mysql_port}
+        mysql_user: ${Conf.mysql_user}
+        mysql_password: ${Conf.mysql_password}
+        mysql_db: ${Conf.mysql_db}
+        region: ${Conf.region}
+        cos_bucket: ${Conf.cos_bucket}
+        tencent_secret_id: ${Conf.tencent_secret_id}
+        tencent_secret_key: ${Conf.tencent_secret_key}
+        tencent_appid: ${Conf.tencent_appid}
+    events:
+      - timer:
+          name: timer
+          parameters:
+            cronExpression: '*/5 * * * *'
+            enable: true
+
+# 创建API网关Servic
+APIService:
+  component: "@serverless/tencent-apigateway"
+  inputs:
+    region: ${Conf.region}
+    protocols:
+      - http
+      - https
+    serviceName: AIAlbum
+    environment: release
+    endpoints:
+      - path: /login
+        method: ANY
+        function:
+          functionName: Album_Login
+      - path: /photo/get/search
+        method: ANY
+        function:
+          functionName: Album_Get_Photo_Search
+      - path: /photo/upload
+        method: ANY
+        function:
+          functionName: Album_Upload
+      - path: /tags/list
+        method: ANY
+        function:
+          functionName: Album_Tags_List
+      - path: /photo/get/tags
+        method: ANY
+        function:
+          functionName: Album_Get_Photo_Tags
+      - path: /photo/get
+        method: ANY
+        function:
+          functionName: Album_Get_Photo
+      - path: /album/change
+        method: ANY
+        function:
+          functionName: Album_Change_Album
+      - path: /openid/get
+        method: ANY
+        function:
+          functionName: Album_Get_Open_Id
+      - path: /album/get/info
+        method: ANY
+        function:
+          functionName: Album_Get_Album_Info
+      - path: /album/get
+        method: ANY
+        function:
+          functionName: Album_Get_Album
+      - path: /photo/delete
+        method: ANY
+        function:
+          functionName: Album_Delete_Photo
+      - path: /album/delete
+        method: ANY
+        function:
+          functionName: Album_Delete_Album
+      - path: /album/add
+        method: ANY
+        function:
+          functionName: Album_Add_Album

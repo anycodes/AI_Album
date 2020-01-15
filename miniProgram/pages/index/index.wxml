@@ -1,0 +1,16 @@
+<block wx:if="{{!hasUserInfo && canIUse && album}}">
+  <!--index.wxml-->
+  <view class="page">
+    <view class="page__hd">
+      <view class="page__title">一册时光</view>
+      <view class="page__desc">时光相册 - 有这一册</view>
+    </view>
+    <view class="page__hd">
+      <view class="">一册时光是一款基于人工智能的相册管理小程序，在您注册账号之后，您可以新建相册、上传图片。在之后很久的未来，您可以通过文字描述，来快速检索到过去的时光。</view>
+    </view>
+    <view>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="userinfo"> 点击使用小程序 </button>
+    </view>
+    <text>\n\n</text>
+  </view>
+</block>

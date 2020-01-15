@@ -3,9 +3,12 @@
 # AI_Album说明
 ## 项目背景
 
+![avatar](https://github.com/anycodes/album/blob/master/image/01.png?raw=true)
+
 在日常生活中，我们经常会遇到搜索照片的情况，尤其是对寻找过去很久的图片，记忆中仅剩下零散的记忆的时候，我们检索照片的方法通常是定位到大致的时间，然后一张一张的去查看，但是这种做法效率低下，还经常会漏掉我们的目标图片，所以这个时候，就迫切需要一款可以搜索图片的软件，即我们可以通过简单的文字描述，实现图片的快速检索。
 近几年微信小程序的发展速度飞快，从2017年年初，张小龙在2017微信公开课Pro上发布的小程序正式上线到目前为止，小程序已经覆盖了超过200个细分行业，服务超过1000亿人次用户，年交易增长超过600%，创造超过5000亿的商业价值。而小程序蓬勃发展的背后，是一群优秀的小程序开发者的不断贡献。
 本实例将会通过微信小程序，在Serverless架构上，实现一款基于人工智能的相册小工具，该款小工具可以在保证基础相册功能（新建相册、删除相册、上传图片、查看图片、删除图片）的基础上，增加搜索功能，即用户上传图片之后，基于Image Caption技术，自动对图片进行描述，实现Image to Text的过程，当用户进行搜索时，通过文本间的相似度，返回给用户最贴近的图片。
+
 
 ## 项目设计
 该项目设计主要包括三部分，分别是功能设计，模块设计以及数据库设计，其中功能设计主要是每个功能点的定义，模块设计主要是后端所需要的各个功能模块的设计，数据库设计表示的是数据库的整体结构和形式。
@@ -45,7 +48,6 @@
  ![avatar](https://github.com/anycodes/album/blob/master/image/67.png?raw=true)
 
 
-
 ## 数据库建立
 
  ![avatar](https://github.com/anycodes/album/blob/master/image/mysql.png?raw=true)
@@ -58,7 +60,7 @@ CREATE DATABASE `album`;
 CREATE TABLE `album`.`tags` ( `tid` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `remark` TEXT NULL , PRIMARY KEY (`tid`)) ENGINE = InnoDB;
 CREATE TABLE `album`.`category` ( `cid` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `sorted` INT NOT NULL DEFAULT '1' , `user` INT NOT NULL , `remark` TEXT NULL , `publish` DATE NOT NULL , `area` VARCHAR(255) NULL , PRIMARY KEY (`cid`)) ENGINE = InnoDB;
 CREATE TABLE `album`.`users` ( `uid` INT NOT NULL AUTO_INCREMENT , `nickname` TEXT NOT NULL , `wechat` VARCHAR(255) NOT NULL , `remark` TEXT NULL , PRIMARY KEY (`uid`)) ENGINE = InnoDB;
-CREATE TABLE `album`.`photo` ( `pid` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `small` VARCHAR(255) NOT NULL , `large` VARCHAR(255) NOT NULL , `category` INT NOT NULL , `tags` VARCHAR(255) NULL , `remark` TEXT NULL , `creattime` DATE NOT NULL , `creatarea` VARCHAR(255) NOT NULL , , `user` INT NOT NULL ,  PRIMARY KEY (`pid`)) ENGINE = InnoDB;
+CREATE TABLE `album`.`photo` ( `pid` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `small` VARCHAR(255) NOT NULL , `large` VARCHAR(255) NOT NULL , `category` INT NOT NULL , `tags` VARCHAR(255) NULL , `remark` TEXT NULL , `creattime` DATE NOT NULL , `creatarea` VARCHAR(255) NOT NULL , `user` INT NOT NULL ,  PRIMARY KEY (`pid`)) ENGINE = InnoDB;
 CREATE TABLE `album`.`photo_tags` ( `ptid` INT NOT NULL AUTO_INCREMENT , `tag` INT NOT NULL , `photo` INT NOT NULL , `remark` INT NULL , PRIMARY KEY (`ptid`)) ENGINE = InnoDB;
 
 ```
@@ -73,13 +75,97 @@ ALTER TABLE `category` ADD CONSTRAINT `category_user_alter` FOREIGN KEY (`user`)
 ALTER TABLE `tags` ADD unique(`name`);
 
 ```
-## 注意事项
-使用本代码的时候需要您注册微信小程序，腾讯云，拿到微信小程序AppID，AppSecret，腾讯云SecretId，SecretKey以及自己的数据库账号密码等信息。
+## 使用方法
 
-然后修改：
+* 在使用之前您需要有一个腾讯云的账号，并且开通了COS、COS、APIGW以及CDB等相关产品权限；
+* 将项目clone到本地，配置自己的密钥信息、数据库信息。配置文件在`cloudFunction`目录下的`serverless.yaml`中：
+```yaml
+# 函数们的整体配置信息
+Conf:
+  component: "serverless-global"
+  inputs:
+    region: ap-shanghai
+    runtime: Python3.6
+    handler: index.main_handler
+    include_common: ./common
+    mysql_host: gz-c************************.com
+    mysql_user: root
+    mysql_password: S************************!
+    mysql_port: 6************************0
+    mysql_db: album
+    mini_program_app_id: asdsa************************dddd
+    mini_program_app_secret: fd340c4************************8744ee
+    tencent_secret_id: AKID1y************************l1q0kK
+    tencent_secret_key: cCoJ************************FZj5Oa
+    tencent_appid: 1256773370
+    cos_bucket: 'album-1256773370'
+    domain: album.0duzahn.com
+```
+由于我目前使用的是Serverless Components，没有全局变量等，所以在此处增加了全局变量组件，在这里设置好全局变量，在之后的Components中可以直接引用，例如：
+```yaml
+# 创建存储桶
+CosBucket:
+  component: '@serverless/tencent-website'
+  inputs:
+    code:
+      src: ./cos
+    region:  ${Conf.region}
+    bucketName: ${Conf.cos_bucket}
+```
+* 安装必备工具，例如必须要安装Serverless Framework（可以参考：https://cloud.tencent.com/document/product/1154/39005）, 同样由于本项目后台开发语言是Python，您也需要一些Python的开发工具以及包管理工具，以及小程序云开发的IDE；
+* 在部分文件夹下安装相对应的依赖：
+    * `cloudFunction/album/prdiction`需要安装Pillow, opencv，tensorflow，jieba
+    * `cloudFunction/album/getPhotoSearch`需要安装gensim，jieba以及collections
+    * `cloudFunction/album/compression`需要安装Pillow
+  注意，在安装的时候一定要用CentOS操作系统，并且Python要3.6版本，如果没相对应系统，可以在这里打包对应的依赖：http://serverless.0duzhan.com/app/scf_python_package_download/
+* 将项目部署到云端，只需要通过指令`serverless --debug`即可：
+```text
+DEBUG ─ Resolving the template's static variables.
+  DEBUG ─ Collecting components from the template.
+  DEBUG ─ Downloading any NPM components found in the template.
+  DEBUG ─ Analyzing the template's components dependencies.
+  DEBUG ─ Creating the template's components graph.
+  DEBUG ─ Syncing template state.
+  DEBUG ─ Executing the template's components graph.
+  DEBUG ─ Starting API-Gateway deployment with name APIService in the ap-shanghai region
+ 
+    ... ...
+ 
+  DEBUG ─ Updating configure... 
+  DEBUG ─ Created function Album_Get_Photo_Search successful
+  DEBUG ─ Setting tags for function Album_Get_Photo_Search
+  DEBUG ─ Creating trigger for function Album_Get_Photo_Search
+  DEBUG ─ Deployed function Album_Get_Photo_Search successful
+  DEBUG ─ Uploaded package successful /Users/dfounderliu/Documents/code/AIAlbum/.serverless/Album_Prediction.zip
+  DEBUG ─ Creating function Album_Prediction
+  DEBUG ─ Updating code... 
+  DEBUG ─ Updating configure... 
+  DEBUG ─ Created function Album_Prediction successful
+  DEBUG ─ Setting tags for function Album_Prediction
+  DEBUG ─ Creating trigger for function Album_Prediction
+  DEBUG ─ Trigger timer: timer not changed
+  DEBUG ─ Deployed function Album_Prediction successful
 
-```mini_program/project.config.json ```第17行appid切换为自己微信小程序账号的appid
+  Conf: 
+    region:                  ap-shanghai
+      
+      ... ...
+      
+      - 
+        path:   /photo/delete
+        method: ANY
+        apiId:  api-g9u6r9wq
+      - 
+        path:   /album/delete
+        method: ANY
+        apiId:  api-b4c4xrq8
+      - 
+        path:   /album/add
+        method: ANY
+        apiId:  api-ml6q5koy
 
-scf目录下所有的数据库账号密码，需要自己替换为自己的数据库账号密码
+  156s › APIService › done
 
-```scf/get_openid/get_openid.py```目录中修改自己的APPID和APPSecret
+```
+例如我的这个过程，只用了156s部署了所有函数，然后打开小程序的id带入`miniProgram`目录，并且填写自己的`appid`在文件`project.config.json`的第17行，同时也要配置自己项目的基础目录，就是API网关给我们返回的地址，写在`app.js`的第10行，此时项目就可以运行起来了。
+当然，考虑到部分小伙伴可能比较喜欢方便，所以我这里也提供了后台的压缩包：	https://album-1256773370.cos.ap-shanghai.myqcloud.com/others/AIAlbum.zip
